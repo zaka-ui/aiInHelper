@@ -38,7 +38,6 @@ const saveResultsToLocalStorage = (businessName, mainLocation, results) => {
       id: `history-${Date.now()}`,
       timestamp: new Date().toISOString(),
     };
-
     // Retrieve existing results from local storage
     const existingResults = JSON.parse(localStorage.getItem("keywordResults")) || [];
 
@@ -118,56 +117,20 @@ const downloadCSV = (csvContent, filename) => {
 };
 
 // Components
-const Header = ({ onBack , goHistory}) => (
-  <div className="flex items-center justify-between bg-gray-800/50 p-6 rounded-lg 
-                backdrop-blur-sm border border-gray-700 shadow-lg">
-    <div className="flex items-center justify-center">
-    <button
-      onClick={onBack}
-      className="flex items-center px-4 py-2 rounded-lg bg-blue-600/20 border border-blue-500/30
-               text-blue-400 hover:bg-blue-600/30 transition-all duration-200 mr-2"
-    >
-      <ChevronLeft className="mr-2 h-5 w-5" />
-      Go back
+const Header = ({ onBack, goHistory }) => (
+  <header className="flex items-center justify-between mb-6">
+    <button onClick={onBack} className="text-white hover:text-gray-300">
+      <ChevronLeft className="w-6 h-6" /> Back
     </button>
-    <button
-      onClick={goHistory}
-      className="flex items-center px-4 py-2 rounded-lg bg-blue-600/20 border border-blue-500/30
-               text-blue-400 hover:bg-blue-600/30 transition-all duration-200"
-    >
-      Go to history
+    <button onClick={goHistory} className="text-white hover:text-gray-300">
+      History
     </button>
-    </div>
-    <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r 
-                 from-blue-400 to-purple-500">
-      Research Results
-    </h1>
-  </div>
+  </header>
 );
-
 const BusinessInfo = ({ name, location }) => (
-  <div className="bg-gray-800/50 p-6 rounded-lg backdrop-blur-sm border border-gray-700 
-                shadow-lg space-y-4">
-    <h2 className="text-xl font-semibold text-transparent bg-clip-text 
-                 bg-gradient-to-r from-blue-400 to-purple-500">
-      Business Information
-    </h2>
-    <div className="space-y-3">
-      <div className="flex items-center space-x-3 text-gray-300">
-        <Building2 className="h-5 w-5 text-blue-400" />
-        <p>
-          <span className="text-gray-400">Business Name:</span>{' '}
-          {name || 'N/A'}
-        </p>
-      </div>
-      <div className="flex items-center space-x-3 text-gray-300">
-        <MapPin className="h-5 w-5 text-purple-400" />
-        <p>
-          <span className="text-gray-400">Main Location:</span>{' '}
-          {location || 'N/A'}
-        </p>
-      </div>
-    </div>
+  <div className="bg-gray-800 p-6 rounded-lg shadow-md">
+    <h2 className="text-lg font-semibold">{name}</h2>
+    <p className="text-sm text-gray-400">{location}</p>
   </div>
 );
 
